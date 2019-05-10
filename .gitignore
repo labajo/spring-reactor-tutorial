@@ -25,3 +25,4 @@ hs_err_pid*
 /reactor-tutorial/.settings
 /reactor-tutorial/.project
 /reactor-tutorial/.classpath
+/.DS_Store
