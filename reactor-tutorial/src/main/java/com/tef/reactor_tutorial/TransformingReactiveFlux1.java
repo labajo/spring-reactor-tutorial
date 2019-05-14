@@ -1,6 +1,8 @@
 package com.tef.reactor_tutorial;
 
 
+import java.time.Duration;
+
 import reactor.core.publisher.Flux;
 
 
@@ -20,18 +22,18 @@ public class TransformingReactiveFlux1
 	// In one of the there is a delay on value emitting process.
     public static void main( String[] args ) throws InterruptedException
     {
-    	Flux<String> fruits = getFluxSample1().skip(3);
-    	
-    	fruits.log().doOnComplete(() -> {
-    		//System.exit(0);
-    	}).subscribe(System.out::println);
-    	
-    	
-//    	Flux<String> fruits = getFluxSample1().skip(3).delayElements(Duration.ofMillis(800));
+//    	Flux<String> fruits = getFluxSample1().skip(3).take(2);
 //    	
-//    	fruits.log().doOnTerminate(() -> {
+//    	fruits.log().doOnComplete(() -> {
 //    		//System.exit(0);
 //    	}).subscribe(System.out::println);
+    	
+    	
+    	Flux<String> fruits = getFluxSample1().skip(3).delayElements(Duration.ofMillis(800));
+    	
+    	fruits.log().doOnTerminate(() -> {
+    		//System.exit(0);
+    	}).subscribe(System.out::println);
     	
     	
     	long start = System.currentTimeMillis();

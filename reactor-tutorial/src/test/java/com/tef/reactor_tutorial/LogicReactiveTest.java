@@ -1,12 +1,9 @@
 package com.tef.reactor_tutorial;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import org.junit.jupiter.api.Test;
 import com.tef.reactor_tutorial.CreatingReactiveFlux1;
 import com.tef.reactor_tutorial.ExerciseTransformingReactiveFlux3;
 
-import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
 

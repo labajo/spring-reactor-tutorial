@@ -23,8 +23,6 @@ public class ExerciseTransformingReactiveFlux1
 		return hash.get(key);
 	}
 	
-	
-	
 	// print the result of a new flux with the following elemets:
 	// I like Apple with Onion
 	// I like Orange with Garlic

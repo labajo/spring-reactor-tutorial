@@ -14,7 +14,6 @@ public class ExerciseControlFlowReactive1
     public static void main( String[] args ) throws InterruptedException
     {
     	
-    	
     	// Handle the error produced in the switchIfEmpty stage. Write the error message to Stdout.
     	getUser("Peter").switchIfEmpty(Mono.error(new Throwable("Resource not found"))).log()
     	.doOnError(System.out::println)

@@ -27,7 +27,8 @@ public class ExerciseCombiningReactiveMono1
 	}
 	
 	
-	// Combine the results Politician and Corruption in a Tuple
+	// Combine the results Politicians and Corruption in a Tuple
+	// Combine the results into a tuple using methods getMonoSample1 and getMonoSample3
 	
     public static void main( String[] args ) throws InterruptedException
     {
