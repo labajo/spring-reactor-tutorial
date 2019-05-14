@@ -33,13 +33,13 @@ public class TransformingReactiveFlux3
     {
     	Flux<String> fruits = getFluxSample1();
     	
-    	fruits.map(fruit -> "I like " + fruit).log().doOnComplete(() -> {
+    	fruits.map(fruit -> "I like " + fruit).log().doOnTerminate(() -> {
     		//System.exit(0);
     	}).subscribe(data -> {
     		System.out.println(data);
     	});
     	
-    	fruits.flatMap(fruit -> getMonoSample3(fruit)).log().doOnComplete(() -> {
+    	fruits.flatMap(fruit -> getMonoSample3(fruit)).log().doOnTerminate(() -> {
     		//System.exit(0);
     	}).subscribe(data -> {
     		System.out.println(data);

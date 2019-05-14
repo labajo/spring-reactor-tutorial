@@ -29,7 +29,7 @@ public class ControlFlowReactive2
     	getUser("Peter").switchIfEmpty(
     			Mono.error(new Throwable("Resource not found"))
     	).log()
-    	.doAfterTerminate(() -> {
+    	.doOnTerminate(() -> {
     		System.out.println("Finish");
     	}).subscribe(data -> {
     		System.out.println(data);
@@ -38,7 +38,7 @@ public class ControlFlowReactive2
 //    	getUser2("Peter").handle((user, sink )-> {
 //    		sink.error(new Throwable("Resource not found"));
 //    	})
-//    	.doAfterTerminate(() -> {
+//    	.doOnTerminate(() -> {
 //    		System.out.println("Finish");
 //    	}).subscribe(data -> {
 //    		System.out.println(data);

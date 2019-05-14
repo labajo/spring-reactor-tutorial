@@ -29,25 +29,25 @@ public class ControlFlowReactive1
     public static void main( String[] args ) throws InterruptedException
     {
     	
-//    	getAllUsers().flatMap(user -> deleteItem(user)).log().doOnComplete(() -> {
+//    	getAllUsers().flatMap(user -> deleteItem(user)).log().doOnTerminate(() -> {
 //    		//System.exit(0);
 //    	}).subscribe(data -> {
 //    		System.out.println(data);
 //    	});
     	
-//    	getAllUsers().flatMap(user -> deleteItem(user).thenReturn(user)).log().doOnComplete(() -> {
+//    	getAllUsers().flatMap(user -> deleteItem(user).thenReturn(user)).log().doOnTerminate(() -> {
 //    		//System.exit(0);
 //    	}).subscribe(data -> {
 //    		System.out.println(data);
 //    	});
     	
-    	getAllUsers().flatMap(user -> deleteItem(user)).then(Mono.just("OK")).log().doAfterTerminate(() -> {
+    	getAllUsers().flatMap(user -> deleteItem(user)).then(Mono.just("OK")).log().doOnTerminate(() -> {
     		System.out.println("Finish");
     	}).subscribe(data -> {
     		System.out.println(data);
     	});
     	
-//    	getAllUsers().flatMap(user -> deleteItem(user)).then().log().doAfterTerminate(() -> {
+//    	getAllUsers().flatMap(user -> deleteItem(user)).then().log().doOnTerminate(() -> {
 //    		System.out.println("Finish");
 //    	}).subscribe(data -> {
 //    		System.out.println(data);

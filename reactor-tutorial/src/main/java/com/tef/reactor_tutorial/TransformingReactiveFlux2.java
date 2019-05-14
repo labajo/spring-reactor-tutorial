@@ -22,7 +22,7 @@ public class TransformingReactiveFlux2
     {
     	Flux<String> fruits = getFluxSample1();
     	
-    	fruits.filter(fruit -> !fruit.contains("e")).log().doOnComplete(() -> {
+    	fruits.filter(fruit -> !fruit.contains("e")).log().doOnTerminate(() -> {
     		//System.exit(0);
     	}).subscribe(data -> {
     		System.out.println(data);
@@ -30,7 +30,7 @@ public class TransformingReactiveFlux2
     	
     	Flux<String> veggies = getFluxSample2();
     	
-    	veggies.distinct().log().doOnComplete(() -> {
+    	veggies.distinct().log().doOnTerminate(() -> {
     		//System.exit(0);
     	}).subscribe(data -> {
     		System.out.println(data);

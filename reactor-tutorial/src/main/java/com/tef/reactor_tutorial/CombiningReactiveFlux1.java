@@ -23,8 +23,8 @@ public class CombiningReactiveFlux1
     	Flux<String> fruits = getFluxSample1().delayElements(Duration.ofMillis(250)).delaySubscription(Duration.ofMillis(260));
     	Flux<String> veggies = getFluxSample2().delayElements(Duration.ofMillis(500));
     	
-    	fruits.mergeWith(veggies).log().doOnComplete(() -> {
-    		//System.exit(0);
+    	fruits.mergeWith(veggies).log().doOnTerminate(() -> {
+    		System.exit(0);
     	}).subscribe(data -> {
     		System.out.println(data);
     	});

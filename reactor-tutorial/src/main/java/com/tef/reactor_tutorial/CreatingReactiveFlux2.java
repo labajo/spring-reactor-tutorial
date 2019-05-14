@@ -31,7 +31,7 @@ public class CreatingReactiveFlux2
     	Flux<String> fluxSample = getFluxSample1();
 //    	Flux<String> fluxSample = getFluxSample2().delayElements(Duration.ofMillis(500));
     	
-    	fluxSample.log().doOnComplete(() -> {
+    	fluxSample.log().doOnTerminate(() -> {
     	}).subscribe(data -> {
     		System.out.println(data);
     	});

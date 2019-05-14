@@ -14,7 +14,7 @@ public class CreatingReactiveFlux3
     {
     	Flux<Integer> fluxSample = getFluxSample1();
     	
-    	fluxSample.log().doOnComplete(() -> {
+    	fluxSample.log().doOnTerminate(() -> {
     		System.exit(0);
     	}).subscribe(data -> {
     		System.out.println(data);

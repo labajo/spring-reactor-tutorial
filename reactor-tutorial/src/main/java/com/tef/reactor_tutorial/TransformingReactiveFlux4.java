@@ -30,14 +30,14 @@ public class TransformingReactiveFlux4
     	// Peter hates Garlic
     	// .......
     	
-//    	veggies.flatMap(veggie ->  user.map(userStr -> userStr + " hates " + veggie).subscribeOn(Schedulers.parallel())).log().doOnComplete(() -> {
+//    	veggies.flatMap(veggie ->  user.map(userStr -> userStr + " hates " + veggie).subscribeOn(Schedulers.parallel())).log().doOnTerminate(() -> {
 //    		//System.exit(0);
 //    	}).subscribe(data -> {
 //    		System.out.println(data);
 //    	});
     	
     	
-    	user.flatMapMany(userStr -> veggies.map(veggie -> userStr + " hates " + veggie).subscribeOn(Schedulers.newSingle("my-thread"))).log().doOnComplete(() -> {
+    	user.flatMapMany(userStr -> veggies.map(veggie -> userStr + " hates " + veggie).subscribeOn(Schedulers.newSingle("my-thread"))).log().doOnTerminate(() -> {
     		//System.exit(0);
     	}).subscribe(data -> {
     		System.out.println(data);

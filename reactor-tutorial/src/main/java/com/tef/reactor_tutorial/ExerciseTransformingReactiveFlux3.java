@@ -31,7 +31,7 @@ public class ExerciseTransformingReactiveFlux3
     	// Charles hates Onion
     	// ........
     	
-    	users.flatMap(userStr -> veggies.map(veggie -> userStr + " hates " + veggie)).log().doOnComplete(() -> {
+    	users.flatMap(userStr -> veggies.map(veggie -> userStr + " hates " + veggie)).log().doOnTerminate(() -> {
     		//System.exit(0);
     	}).subscribe(data -> {
     		System.out.println(data);

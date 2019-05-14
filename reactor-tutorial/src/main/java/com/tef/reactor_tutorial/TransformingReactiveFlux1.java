@@ -31,7 +31,7 @@ public class TransformingReactiveFlux1
     	
     	Flux<String> fruits = getFluxSample1().skip(3).delayElements(Duration.ofMillis(800));
     	
-    	fruits.log().doOnComplete(() -> {
+    	fruits.log().doOnTerminate(() -> {
     		//System.exit(0);
     	}).subscribe(data -> {
     		System.out.println(data);

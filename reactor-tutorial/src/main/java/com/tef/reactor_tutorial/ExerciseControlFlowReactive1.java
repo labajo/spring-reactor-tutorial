@@ -24,7 +24,7 @@ public class ExerciseControlFlowReactive1
     	getUser("Peter").switchIfEmpty(
     			Mono.error(new Throwable("Resource not found"))
     	).doOnError(System.out::println)
-    	.doAfterTerminate(() -> {
+    	.doOnTerminate(() -> {
     		System.out.println("Finish");
     	}).subscribe(data -> {
     		System.out.println(data);
@@ -34,7 +34,7 @@ public class ExerciseControlFlowReactive1
     	getUser("Peter").switchIfEmpty(
     			Mono.error(new Throwable("Resource not found"))
     	)
-    	.doAfterTerminate(() -> {
+    	.doOnTerminate(() -> {
     		System.out.println("Finish");
     	}).subscribe(data -> {
     		System.out.println(data);

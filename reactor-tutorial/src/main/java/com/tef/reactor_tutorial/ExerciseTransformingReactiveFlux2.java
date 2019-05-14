@@ -30,7 +30,7 @@ public class ExerciseTransformingReactiveFlux2
     	// "Peter hates Apple, Orange, Grape, StrawBerry"
     	
     	
-//    	user.flatMap(userStr -> fruits.collectList().map(fruitsArray -> userStr + " hates " + String.join(", ", fruitsArray))).log().doAfterTerminate(() -> {
+//    	user.flatMap(userStr -> fruits.collectList().map(fruitsArray -> userStr + " hates " + String.join(", ", fruitsArray))).log().doOnTerminate(() -> {
 //    		//System.exit(0);
 //    	}).subscribe(data -> {
 //    		System.out.println(data);
@@ -42,7 +42,7 @@ public class ExerciseTransformingReactiveFlux2
     			return fruit2;
     		}
     		return fruit1 + ", " + fruit2;
-    	}).flatMap(fruitsStr-> user.map(userStr -> userStr + " hates " + fruitsStr)).log().doAfterTerminate(() -> {
+    	}).flatMap(fruitsStr-> user.map(userStr -> userStr + " hates " + fruitsStr)).log().doOnTerminate(() -> {
     		//System.exit(0);
     	}).subscribe(data -> {
     		System.out.println(data);

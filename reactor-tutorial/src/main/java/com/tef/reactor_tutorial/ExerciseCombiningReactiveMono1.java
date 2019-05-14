@@ -31,26 +31,26 @@ public class ExerciseCombiningReactiveMono1
     public static void main( String[] args ) throws InterruptedException
     {
     	
-//    	Mono.zip(getMonoSample1(),getMonoSample2()).log().doAfterTerminate(() -> {
+//    	Mono.zip(getMonoSample1(),getMonoSample2()).log().doOnTerminate(() -> {
 //    		//System.exit(0);
 //    	}).subscribe(data -> {
 //    		System.out.println(data);
 //    	});
     	
-//    	getMonoSample1().zipWith(getMonoSample2()).log().doAfterTerminate(() -> {
+//    	getMonoSample1().zipWith(getMonoSample2()).log().doOnTerminate(() -> {
 //    		//System.exit(0);
 //    	}).subscribe(data -> {
 //    		System.out.println(data);
 //    	});
     	
     	
-//    	getMonoSample1().zipWhen((data1)-> getMonoSample2()).log().doAfterTerminate(() -> {
+//    	getMonoSample1().zipWhen((data1)-> getMonoSample2()).log().doOnTerminate(() -> {
 //    		//System.exit(0);
 //    	}).subscribe(data -> {
 //    		System.out.println(data);
 //    	});
     	
-    	getMonoSample1().zipWhen((data1)-> getMonoSample3(data1)).log().doAfterTerminate(() -> {
+    	getMonoSample1().zipWhen((data1)-> getMonoSample3(data1)).log().doOnTerminate(() -> {
 		//System.exit(0);
 		}).subscribe(data -> {
 			System.out.println(data);

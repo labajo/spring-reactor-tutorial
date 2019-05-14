@@ -14,7 +14,7 @@ public class ExerciseCreatingMono1
     {
     	Mono<String> monoSample = getMonoSample1();
     	
-    	monoSample.log().doAfterTerminate(() -> {
+    	monoSample.log().doOnTerminate(() -> {
     		System.exit(0);
     	}).subscribe(data -> {
     		System.out.println(data);

@@ -23,7 +23,7 @@ public class ExerciseCreatingMono2
     {
     	Mono<List<String>> monoSample = getMonoSample1().delayElement(Duration.ofMillis(2500));;
     	
-    	monoSample.log().doAfterTerminate(() -> {
+    	monoSample.log().doOnTerminate(() -> {
     		//System.exit(0);
     	}).subscribe(data -> {
     		System.out.println(data);

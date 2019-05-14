@@ -26,7 +26,7 @@ public class CombiningReactiveFlux2
     	
     	Flux<Tuple2<String, String>> healthyFoods = Flux.zip(fruits, veggies);
     	
-    	healthyFoods.log().doOnComplete(() -> {
+    	healthyFoods.log().doOnTerminate(() -> {
     		System.exit(0);
     	}).subscribe(data -> {
     		System.out.println(data);
