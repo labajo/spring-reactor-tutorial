@@ -1,13 +1,6 @@
 package com.tef.reactor_tutorial;
 
-import java.time.Duration;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
-import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-import reactor.core.scheduler.Schedulers;
 
 
 public class ExerciseControlFlowReactive1 
@@ -21,28 +14,22 @@ public class ExerciseControlFlowReactive1
     public static void main( String[] args ) throws InterruptedException
     {
     	
-    	getUser("Peter").switchIfEmpty(
-    			Mono.error(new Throwable("Resource not found"))
-    	).doOnError(System.out::println)
+    	
+    	// Handle the error produced in the switchIfEmpty stage. Write the error message to Stdout.
+    	getUser("Peter").switchIfEmpty(Mono.error(new Throwable("Resource not found"))).log()
+    	.doOnError(System.out::println)
     	.doOnTerminate(() -> {
     		System.out.println("Finish");
-    	}).subscribe(data -> {
-    		System.out.println(data);
-    	});
+    	}).subscribe(System.out::println);
     	
     	
     	getUser("Peter").switchIfEmpty(
     			Mono.error(new Throwable("Resource not found"))
-    	)
+    	).log()
     	.doOnTerminate(() -> {
     		System.out.println("Finish");
-    	}).subscribe(data -> {
-    		System.out.println(data);
-    	}, err -> {
-    		System.out.println(err);
-    	});
-
     	
+    	}).subscribe(System.out::println, System.out::println);
 
     	
     	long start = System.currentTimeMillis();

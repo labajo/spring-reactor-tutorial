@@ -1,9 +1,6 @@
 package com.tef.reactor_tutorial;
 
 import java.time.Duration;
-import java.util.ArrayList;
-import java.util.List;
-
 import reactor.core.publisher.Flux;
 
 
@@ -23,14 +20,18 @@ public class CombiningReactiveFlux1
     	Flux<String> fruits = getFluxSample1().delayElements(Duration.ofMillis(250)).delaySubscription(Duration.ofMillis(260));
     	Flux<String> veggies = getFluxSample2().delayElements(Duration.ofMillis(500));
     	
+    	// Merge two flux in another one taking into account the order of the events
     	fruits.mergeWith(veggies).log().doOnTerminate(() -> {
-    		System.exit(0);
-    	}).subscribe(data -> {
-    		System.out.println(data);
-    	});
+    		// System.exit(0);
+    	}).subscribe(System.out::println);
+    	
+    	// Merge two flux in another one taking into account the order flux
+//    	fruits.concatWith(veggies).log().doOnTerminate(() -> {
+//    		// System.exit(0);
+//    	}).subscribe(System.out::println);
     	
     	long start = System.currentTimeMillis();
-    	Thread.sleep(3000);
+    	Thread.sleep(6000);
     	System.out.println("Sleep time in ms = "+(System.currentTimeMillis()-start));
     	
     }

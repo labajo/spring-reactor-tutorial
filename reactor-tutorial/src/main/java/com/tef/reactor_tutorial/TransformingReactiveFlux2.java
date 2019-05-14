@@ -1,9 +1,5 @@
 package com.tef.reactor_tutorial;
 
-import java.time.Duration;
-import java.util.ArrayList;
-import java.util.List;
-
 import reactor.core.publisher.Flux;
 
 
@@ -18,23 +14,22 @@ public class TransformingReactiveFlux2
 		return Flux.just("Onion", "Garlic", "Lettuce", "Cucumber", "Onion", "Garlic");
 	}
 	
+	
+	// filter fruits inside a flux that contains letter e.
+	// discard duplicated values inside a flux.
     public static void main( String[] args ) throws InterruptedException
     {
     	Flux<String> fruits = getFluxSample1();
     	
     	fruits.filter(fruit -> !fruit.contains("e")).log().doOnTerminate(() -> {
     		//System.exit(0);
-    	}).subscribe(data -> {
-    		System.out.println(data);
-    	});
+    	}).subscribe(System.out::println);
     	
-    	Flux<String> veggies = getFluxSample2();
-    	
-    	veggies.distinct().log().doOnTerminate(() -> {
-    		//System.exit(0);
-    	}).subscribe(data -> {
-    		System.out.println(data);
-    	});
+//    	Flux<String> veggies = getFluxSample2();
+//    	
+//    	veggies.distinct().log().doOnTerminate(() -> {
+//    		//System.exit(0);
+//    	}).subscribe(System.out::println);
     	
     	
     	

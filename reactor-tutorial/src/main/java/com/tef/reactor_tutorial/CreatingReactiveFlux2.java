@@ -10,7 +10,8 @@ import reactor.core.publisher.Flux;
 
 public class CreatingReactiveFlux2 
 {
-	
+
+	// return a flux from an iterable
 	public static Flux<String> getFluxSample1() {
 		List<String> fruits = new ArrayList<>();
 		fruits.add("Apple");
@@ -20,7 +21,7 @@ public class CreatingReactiveFlux2
     	return Flux.fromIterable(fruits);
 	}
 	
-	
+	// return a flux from an stream
 	public static Flux<String> getFluxSample2() {
 		Stream<String> fruits = Stream.of("Apple", "Orange", "Grape", "Strawberry");
     	return Flux.fromStream(fruits);
@@ -32,9 +33,7 @@ public class CreatingReactiveFlux2
 //    	Flux<String> fluxSample = getFluxSample2().delayElements(Duration.ofMillis(500));
     	
     	fluxSample.log().doOnTerminate(() -> {
-    	}).subscribe(data -> {
-    		System.out.println(data);
-    	});
+    	}).subscribe(System.out::println);
     	
 //    	long start = System.currentTimeMillis();
 //        Thread.sleep(3000);

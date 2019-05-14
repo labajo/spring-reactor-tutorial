@@ -1,9 +1,5 @@
 package com.tef.reactor_tutorial;
 
-import java.time.Duration;
-import java.util.ArrayList;
-import java.util.List;
-
 import reactor.core.publisher.Flux;
 import reactor.util.function.Tuple2;
 
@@ -24,7 +20,11 @@ public class CombiningReactiveFlux2
     	Flux<String> fruits = getFluxSample1();
     	Flux<String> veggies = getFluxSample2();
     	
+    	
+    	// Groups the two flux elements in a pair an the rests of the elements are discarded
     	Flux<Tuple2<String, String>> healthyFoods = Flux.zip(fruits, veggies);
+    	
+    	// Flux<Tuple2<String, String>> healthyFoods = fruits.zipWith(veggies);
     	
     	healthyFoods.log().doOnTerminate(() -> {
     		System.exit(0);

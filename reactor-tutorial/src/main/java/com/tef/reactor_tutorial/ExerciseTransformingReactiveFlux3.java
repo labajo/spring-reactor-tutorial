@@ -1,12 +1,8 @@
 package com.tef.reactor_tutorial;
 
-import java.time.Duration;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+
 
 import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
 
 
 public class ExerciseTransformingReactiveFlux3 
@@ -20,23 +16,26 @@ public class ExerciseTransformingReactiveFlux3
 		return Flux.just("Onion", "Garlic", "Lettuce", "Cucumber");
 	}
 	
+	// Transform the previous flux into a new one with the following content.
+	// Peter hates Onion
+	// Peter hates Garlic
+	// .......
+	// Charles hates Onion
+	// ........
+	
     public static void main( String[] args ) throws InterruptedException
     {
     	Flux<String> users = getFluxSample1();
     	Flux<String> veggies = getFluxSample2();
     	
-    	// Peter hates Onion
-    	// Peter hates Garlic
-    	// .......
-    	// Charles hates Onion
-    	// ........
-    	
+
     	users.flatMap(userStr -> veggies.map(veggie -> userStr + " hates " + veggie)).log().doOnTerminate(() -> {
     		//System.exit(0);
-    	}).subscribe(data -> {
-    		System.out.println(data);
-    	});
+    	}).subscribe(System.out::println);
     	
+//    	veggies.flatMap(veggie -> users.map(userStr -> userStr + " hates " + veggie)).log().doOnTerminate(() -> {
+//    		//System.exit(0);
+//    	}).subscribe(System.out::println);
     	
     	
     	long start = System.currentTimeMillis();

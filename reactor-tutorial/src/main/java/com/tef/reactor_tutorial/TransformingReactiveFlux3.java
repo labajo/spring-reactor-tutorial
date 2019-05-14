@@ -1,9 +1,8 @@
 package com.tef.reactor_tutorial;
 
-import java.time.Duration;
-import java.util.ArrayList;
+
 import java.util.HashMap;
-import java.util.List;
+import java.util.Map;
 
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -21,7 +20,7 @@ public class TransformingReactiveFlux3
 	}
 	
 	public static Mono<String> getMonoSample3(String key) {
-		HashMap<String, Mono<String>> hash = new HashMap<String, Mono<String>>();
+		Map<String, Mono<String>> hash = new HashMap<>();
 		hash.put("Apple", Mono.just("Onion"));
 		hash.put("Orange", Mono.just("Garlic"));
 		hash.put("Grape", Mono.just("Lettuce"));
@@ -29,21 +28,19 @@ public class TransformingReactiveFlux3
 		return hash.get(key);
 	}
 	
+	// Transform a Flux of String into a new one.
+	// Transform a Flux of fruits int a Flux of veggies.
     public static void main( String[] args ) throws InterruptedException
     {
     	Flux<String> fruits = getFluxSample1();
     	
     	fruits.map(fruit -> "I like " + fruit).log().doOnTerminate(() -> {
     		//System.exit(0);
-    	}).subscribe(data -> {
-    		System.out.println(data);
-    	});
+    	}).subscribe(System.out::println);
     	
     	fruits.flatMap(fruit -> getMonoSample3(fruit)).log().doOnTerminate(() -> {
     		//System.exit(0);
-    	}).subscribe(data -> {
-    		System.out.println(data);
-    	});
+    	}).subscribe(System.out::println);
     	
     	
     	long start = System.currentTimeMillis();

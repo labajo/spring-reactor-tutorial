@@ -1,13 +1,6 @@
 package com.tef.reactor_tutorial;
 
-import java.time.Duration;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
-import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-import reactor.core.scheduler.Schedulers;
 
 
 public class ControlFlowReactive2 
@@ -25,24 +18,22 @@ public class ControlFlowReactive2
     public static void main( String[] args ) throws InterruptedException
     {
     	
-    	
+    
+    	// emit an error when a mono or flux is empty
     	getUser("Peter").switchIfEmpty(
     			Mono.error(new Throwable("Resource not found"))
     	).log()
     	.doOnTerminate(() -> {
     		System.out.println("Finish");
-    	}).subscribe(data -> {
-    		System.out.println(data);
-    	});
+    	}).subscribe(System.out::println);
     
+    	// emit an error
 //    	getUser2("Peter").handle((user, sink )-> {
 //    		sink.error(new Throwable("Resource not found"));
 //    	})
 //    	.doOnTerminate(() -> {
 //    		System.out.println("Finish");
-//    	}).subscribe(data -> {
-//    		System.out.println(data);
-//    	});
+//    	}).subscribe(System.out::println);
     	
     	long start = System.currentTimeMillis();
     	Thread.sleep(3000);

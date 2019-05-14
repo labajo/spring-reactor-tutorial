@@ -1,10 +1,5 @@
 package com.tef.reactor_tutorial;
 
-import java.time.Duration;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -20,21 +15,17 @@ public class ExerciseTransformingReactiveFlux2
 		return Mono.just("Peter");
 	}
 	
-	
-	
+	// Transform the user mono to other mono with the following element:
+	// "Peter hates Apple, Orange, Grape, StrawBerry"
     public static void main( String[] args ) throws InterruptedException
     {
     	Mono<String> user = getFluxSample2();
     	Flux<String> fruits = getFluxSample1();
     	
-    	// "Peter hates Apple, Orange, Grape, StrawBerry"
-    	
     	
 //    	user.flatMap(userStr -> fruits.collectList().map(fruitsArray -> userStr + " hates " + String.join(", ", fruitsArray))).log().doOnTerminate(() -> {
 //    		//System.exit(0);
-//    	}).subscribe(data -> {
-//    		System.out.println(data);
-//    	});
+//    	}).subscribe(System.out::println);
     	
     	
     	fruits.reduce("", (fruit1, fruit2) -> {
@@ -44,9 +35,7 @@ public class ExerciseTransformingReactiveFlux2
     		return fruit1 + ", " + fruit2;
     	}).flatMap(fruitsStr-> user.map(userStr -> userStr + " hates " + fruitsStr)).log().doOnTerminate(() -> {
     		//System.exit(0);
-    	}).subscribe(data -> {
-    		System.out.println(data);
-    	});
+    	}).subscribe(System.out::println);
     	
     	
     	

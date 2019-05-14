@@ -1,8 +1,5 @@
 package com.tef.reactor_tutorial;
 
-import java.time.Duration;
-import java.util.ArrayList;
-import java.util.List;
 
 import reactor.core.publisher.Flux;
 
@@ -18,24 +15,23 @@ public class TransformingReactiveFlux1
 		return Flux.just("Onion", "Garlic", "Lettuce", "Cucumber");
 	}
 	
+	
+	// skip 3 elements from the flux.
+	// In one of the there is a delay on value emitting process.
     public static void main( String[] args ) throws InterruptedException
     {
-//    	Flux<String> fruits = getFluxSample1().skip(3);
-//    	
-//    	fruits.log().doOnComplete(() -> {
-//    		//System.exit(0);
-//    	}).subscribe(data -> {
-//    		System.out.println(data);
-//    	});
+    	Flux<String> fruits = getFluxSample1().skip(3);
     	
-    	
-    	Flux<String> fruits = getFluxSample1().skip(3).delayElements(Duration.ofMillis(800));
-    	
-    	fruits.log().doOnTerminate(() -> {
+    	fruits.log().doOnComplete(() -> {
     		//System.exit(0);
-    	}).subscribe(data -> {
-    		System.out.println(data);
-    	});
+    	}).subscribe(System.out::println);
+    	
+    	
+//    	Flux<String> fruits = getFluxSample1().skip(3).delayElements(Duration.ofMillis(800));
+//    	
+//    	fruits.log().doOnTerminate(() -> {
+//    		//System.exit(0);
+//    	}).subscribe(System.out::println);
     	
     	
     	long start = System.currentTimeMillis();

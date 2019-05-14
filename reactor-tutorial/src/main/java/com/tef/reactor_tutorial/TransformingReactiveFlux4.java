@@ -1,9 +1,5 @@
 package com.tef.reactor_tutorial;
 
-import java.time.Duration;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -21,29 +17,24 @@ public class TransformingReactiveFlux4
 		return Flux.just("Onion", "Garlic", "Lettuce", "Cucumber");
 	}
 	
+	
+	// create a flux of string with the following elements:
+	// Peter hates Onion
+	// Peter hates Garlic
+	// .......
+	
     public static void main( String[] args ) throws InterruptedException
     {
     	Mono<String> user = getFluxSample1();
     	Flux<String> veggies = getFluxSample2();
     	
-    	// Peter hates Onion
-    	// Peter hates Garlic
-    	// .......
-    	
 //    	veggies.flatMap(veggie ->  user.map(userStr -> userStr + " hates " + veggie).subscribeOn(Schedulers.parallel())).log().doOnTerminate(() -> {
 //    		//System.exit(0);
-//    	}).subscribe(data -> {
-//    		System.out.println(data);
-//    	});
-    	
+//    	}).subscribe(System.out::println);
     	
     	user.flatMapMany(userStr -> veggies.map(veggie -> userStr + " hates " + veggie).subscribeOn(Schedulers.newSingle("my-thread"))).log().doOnTerminate(() -> {
     		//System.exit(0);
-    	}).subscribe(data -> {
-    		System.out.println(data);
-    	});
-//    	
-    	
+    	}).subscribe(System.out::println);    	
     	
     	long start = System.currentTimeMillis();
     	Thread.sleep(3000);

@@ -1,13 +1,7 @@
 package com.tef.reactor_tutorial;
 
-import java.time.Duration;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-import reactor.core.scheduler.Schedulers;
 
 
 public class ControlFlowReactive1 
@@ -29,29 +23,22 @@ public class ControlFlowReactive1
     public static void main( String[] args ) throws InterruptedException
     {
     	
-//    	getAllUsers().flatMap(user -> deleteItem(user)).log().doOnTerminate(() -> {
-//    		//System.exit(0);
-//    	}).subscribe(data -> {
-//    		System.out.println(data);
-//    	});
+    	getAllUsers().flatMap(user -> deleteItem(user)).log().doOnTerminate(() -> {
+    		//System.exit(0);
+    	}).subscribe(System.out::println);
     	
+    	// return other value after finish the last mono or flux
 //    	getAllUsers().flatMap(user -> deleteItem(user).thenReturn(user)).log().doOnTerminate(() -> {
 //    		//System.exit(0);
-//    	}).subscribe(data -> {
-//    		System.out.println(data);
-//    	});
+//    	}).subscribe(System.out::println);
     	
-    	getAllUsers().flatMap(user -> deleteItem(user)).then(Mono.just("OK")).log().doOnTerminate(() -> {
-    		System.out.println("Finish");
-    	}).subscribe(data -> {
-    		System.out.println(data);
-    	});
+//    	getAllUsers().flatMap(user -> deleteItem(user)).then(Mono.just("OK")).log().doOnTerminate(() -> {
+//    		System.out.println("Finish");
+//    	}).subscribe(System.out::println);
     	
 //    	getAllUsers().flatMap(user -> deleteItem(user)).then().log().doOnTerminate(() -> {
 //    		System.out.println("Finish");
-//    	}).subscribe(data -> {
-//    		System.out.println(data);
-//    	});
+//    	}).subscribe(System.out::println);
     	
     	long start = System.currentTimeMillis();
     	Thread.sleep(3000);

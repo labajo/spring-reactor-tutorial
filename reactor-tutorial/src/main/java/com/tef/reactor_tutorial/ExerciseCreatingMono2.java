@@ -19,15 +19,15 @@ public class ExerciseCreatingMono2
 		return Mono.just(fruits);
 	}
 	
+	
+	// Create a Mono from an Iterable and show the data in the stdout.
     public static void main( String[] args ) throws InterruptedException
     {
-    	Mono<List<String>> monoSample = getMonoSample1().delayElement(Duration.ofMillis(2500));;
+    	Mono<List<String>> monoSample = getMonoSample1().delayElement(Duration.ofMillis(2500));
     	
     	monoSample.log().doOnTerminate(() -> {
     		//System.exit(0);
-    	}).subscribe(data -> {
-    		System.out.println(data);
-    	});
+    	}).subscribe(System.out::println);
     	
     	
     	long start = System.currentTimeMillis();
